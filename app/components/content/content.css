@@ -1,0 +1,14 @@
+.content {
+  color: rgb(66, 88, 100);
+  padding: 40px;
+  max-width: 900px;
+}
+
+.title {
+    font-size: 45px;
+    line-height: 1.2;
+    margin: 0;
+    font-weight: 300;
+    text-transform: uppercase;
+    color: #13A99E;
+}
