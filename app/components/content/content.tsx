@@ -47,6 +47,7 @@ export class Content extends React.Component<IContentProps, IContentState> {
                      </div>}
                 </div>
               : <div className={style.singlePost}>
+                {title === "Introduction" ? <div className={style.hero} style={{ backgroundImage: "url(./assets/home-bg.png)"}}><h1>Software Seni Codex</h1></div> : null}
                   <h2 className={style.title}>{title}</h2>
                   <div className={style.item} dangerouslySetInnerHTML={{ __html: content }} />
                 </div>}

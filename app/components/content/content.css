@@ -1,7 +1,5 @@
 .content {
     color: rgb(66, 88, 100);
-    padding: 40px;
-    max-width: 900px;
 }
 
 .title {
@@ -14,12 +12,19 @@
 }
 
 .title a {
-  color: #13A99E;
+    color: #13A99E;
+}
+
+.item,
+.title {
+    padding: 0 40px;
+    max-width: 900px;
+    margin: 20px 0;
 }
 
 .item img {
-  max-width: 100%;
-  height: auto;
+    max-width: 100%;
+    height: auto;
 }
 
 .searchItem {
@@ -30,4 +35,22 @@
 
 .searchItem .title {
     font-size: 30px;
+}
+
+.hero {
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+    color: #fff;
+    min-height: 400px;
+    background-position: bottom;
+}
+
+.hero h1 {
+    margin: 0;
+    font-size: 80px;
+    font-weight: 200;
+    line-height: 1;
+    max-width: 650px;
+    padding: 40px;
 }
