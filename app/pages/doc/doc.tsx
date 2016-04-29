@@ -10,7 +10,7 @@ import {SearchForm} from "../../components/search-form/search-form";
 import {Content} from "../../components/content/content";
 
 // Action
-import {getDoc} from "./doc.act";
+import {getDoc, searchDoc} from "./doc.act";
 
 // Styles
 const style: any = require("./doc.css");
@@ -29,6 +29,7 @@ export class Doc extends React.Component<any, {}> {
       }
       dispatch(getDoc(this.defaultSlug));
     }
+
     componentWillReceiveProps(props) {
       const {dispatch} = this.props;
       const oldSlug = this.props.params.slug;
@@ -40,15 +41,20 @@ export class Doc extends React.Component<any, {}> {
         dispatch(getDoc(slug));
       }
     }
+
     render(): React.ReactElement<{}> {
-        const {docs} = this.props;
-        const {data, status} = docs;
+        const {docs, dispatch} = this.props;
+        const {data, status, search, onSearchPage} = docs;
         return (
             <div className={`doc ${style.doc}`}>
               <Sidebar className={style.sidebar} />
-              <SearchForm status={status}/>
+              <SearchForm 
+                status={status} 
+                searchDoc={(query) => dispatch(searchDoc(query)) } />
               <Content 
                 title={data.title} 
+                onSearchPage={onSearchPage}
+                searchData={search.posts}
                 content={data.content} />
             </div>
         );

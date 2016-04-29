@@ -4,6 +4,7 @@
 
 interface ISearchFormProps {
   status: string;
+  searchDoc: (string) => void;
 }
 
 interface ISearchFormState {
@@ -20,11 +21,24 @@ const style: any = require("./search-form.css");
  */
 
 export class SearchForm extends React.Component<ISearchFormProps, ISearchFormState> {
+    public timer;
+
     render(): React.ReactElement<{}> {
-        const {status} = this.props;
+        const {status, searchDoc} = this.props;
         return (
             <div className={`search-form ${style.searchForm} ${status === "COMPLETE" ? style.loadingComplete : style.loading}`}>
-              <input className={style.searchInput} placeholder="Enter your search term..." type="text" />
+              <input 
+                className={style.searchInput} 
+                placeholder="Enter your search term..." 
+                type="text"
+                onChange={(event) => {
+                  const {value}: any = event.target;
+                  clearTimeout(this.timer);
+                  this.timer = setTimeout(
+                    () => searchDoc(value), 
+                    300
+                  );
+                }} />
             </div>
         );
     }

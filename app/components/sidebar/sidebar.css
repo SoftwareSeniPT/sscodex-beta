@@ -2,10 +2,6 @@
     padding: 15px 30px;
 }
 
-.categories {
-    overflow: auto;
-}
-
 .mainCategory {
     position: relative;
 }

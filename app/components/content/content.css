@@ -1,7 +1,7 @@
 .content {
-  color: rgb(66, 88, 100);
-  padding: 40px;
-  max-width: 900px;
+    color: rgb(66, 88, 100);
+    padding: 40px;
+    max-width: 900px;
 }
 
 .title {
@@ -11,4 +11,23 @@
     font-weight: 300;
     text-transform: uppercase;
     color: #13A99E;
+}
+
+.title a {
+  color: #13A99E;
+}
+
+.item img {
+  max-width: 100%;
+  height: auto;
+}
+
+.searchItem {
+    padding-bottom: 10px;
+    border-bottom: 1px dashed #ddd;
+    margin-bottom: 10px;
+}
+
+.searchItem .title {
+    font-size: 30px;
 }
