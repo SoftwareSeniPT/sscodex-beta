@@ -43,12 +43,8 @@ export class Sidebar extends React.Component<any, any> {
         return false;
       });
 
-      let gettingStartedID;
       let catWithChildren =  filteredCat.map((cat, key) => {
         const catID = cat.ID;
-        if (cat.slug === "getting-started") {
-          gettingStartedID = key;
-        }
         return immutable(cat, {
           children: categories.filter((cat, key) => {
             if (catID === cat.parent) {
@@ -59,9 +55,30 @@ export class Sidebar extends React.Component<any, any> {
         });
       });
 
-      if (gettingStartedID !== undefined) {
-        catWithChildren = moveArrayItem(catWithChildren, gettingStartedID, 0);
-      }
+      const categoryOrder = [{
+          slug: "getting-started",
+          id: 0
+        }, {
+          slug: "contribute",
+          id: "last"
+        }];
+
+      categoryOrder.map((cat, key) => {
+        const slug = cat.slug;
+        let id = cat.id;
+        if (id === "last") {
+          id = catWithChildren.length - 1;
+        }
+        let position;
+        catWithChildren.map((cat, key) => {
+          if (cat.slug === slug) {
+            position = key;
+          }
+        });
+        if (position !== undefined) {
+          catWithChildren = moveArrayItem(catWithChildren, position, id);
+        }
+      });
 
       return catWithChildren;
     };
