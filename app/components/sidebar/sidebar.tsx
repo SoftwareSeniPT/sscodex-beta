@@ -140,7 +140,7 @@ export class Sidebar extends React.Component<any, any> {
                         return (
                           <li key={key} className={opened ? style.opened : style.closed}>
                             <span 
-                              className={style.parentLabel}
+                              className={`${style.parentLabel} ${opened ? style.parentLabelOpened : ""}`}
                               onClick={() => opened ? this.toogleOpenCategory(ID, false) : 
                               this.toogleOpenCategory(ID, true)}>{name}</span>
                             {posts.length ? 

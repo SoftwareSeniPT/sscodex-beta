@@ -14,8 +14,17 @@
     top: 0;
     bottom: 0;
     left: 0;
-    box-shadow: 1px 0 2px -2px #555;
-    border-right: 1px solid #BDBDBD;
+    padding-top: 60px;
+}
+
+.sidebar:after {
+    position: absolute;
+    top: 0;
+    left: 100%;
+    bottom: 0;
+    width: 2px;
+    background: #ddd;
+    content: ""
 }
 
 

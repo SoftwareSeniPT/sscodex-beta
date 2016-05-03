@@ -1,19 +1,17 @@
 .logo {
-    padding: 15px 30px;
+    padding: 14px 30px;
+    padding-bottom: 13px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    background: #fff;
+    z-index: 100;
+    border-bottom: 1px solid #CBDEDC;
 }
 
 .mainCategory {
     position: relative;
-}
-
-.mainCategory:first-child:before {
-    position: absolute;
-    top: -1px;
-    left: 30px;
-    right: 30px;
-    height: 1px;
-    background-color: #CBDEDC;
-    content: "";
 }
 
 .mainCategory:after {
@@ -27,13 +25,13 @@
 }
 
 .mainCategoryTitle {
-    font-size: 18px;
+    font-size: 17px;
     line-height: 1.2;
     margin: 0;
     padding: 18px 30px;
-    font-weight: bold;
     position: relative;
     cursor: pointer;
+    font-weight: bold;
 }
 
 .mainCategoryTitle:after {
@@ -64,8 +62,29 @@
     position: relative;
 }
 
-.mainCategory li > span {
+.mainCategory li > span,
+.mainCategory li > a {
     cursor: pointer;
+    display: block;
+    position: relative;
+    padding-right: 15px;
+}
+
+.mainCategory li > span:after {
+    font-family: ss-codex;
+    content: "d";
+    position: absolute;
+    right: 0;
+    top: 0;
+    display: inline-block;
+    font-size: 12px;
+    vertical-align: middle;
+    color: #95c2c1;
+    line-height: 2.3;
+}
+
+.mainCategory li > .parentLabelOpened:after {
+    content: "e";
 }
 
 .currentPage a {
@@ -80,6 +99,7 @@
 .mainCategory > .listWrapper > ul {
     padding: 0 30px;
     padding-bottom: 20px;
+    padding-left: 40px;
 }
 
 .listWrapper {
@@ -96,7 +116,7 @@
 /* Open, close */
 
 .mainCategory.opened {
-    background: #e8f6f6;
+    background: #F2FAFA;
 }
 
 .closed > ul {
