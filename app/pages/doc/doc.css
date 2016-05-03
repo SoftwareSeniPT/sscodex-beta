@@ -17,17 +17,6 @@
     padding-top: 60px;
 }
 
-.sidebar:after {
-    position: absolute;
-    top: 0;
-    left: 100%;
-    bottom: 0;
-    width: 2px;
-    background: #ddd;
-    content: ""
-}
-
-
 /* Modal */
 
 .modal {
