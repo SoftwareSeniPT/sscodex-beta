@@ -5,6 +5,7 @@
 interface ISearchFormProps {
   status: string;
   searchDoc: (string) => void;
+  className: string;
 }
 
 interface ISearchFormState {
@@ -24,9 +25,9 @@ export class SearchForm extends React.Component<ISearchFormProps, ISearchFormSta
     public timer;
 
     render(): React.ReactElement<{}> {
-        const {status, searchDoc} = this.props;
+        const {status, searchDoc, className} = this.props;
         return (
-            <div className={`search-form ${style.searchForm} ${status === "COMPLETE" ? style.loadingComplete : style.loading}`}>
+            <div className={`search-form ${className} ${style.searchForm} ${status === "COMPLETE" ? style.loadingComplete : style.loading}`}>
               <input 
                 className={style.searchInput} 
                 placeholder="Enter your search term..." 

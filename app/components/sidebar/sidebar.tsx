@@ -13,9 +13,12 @@ import {Logo} from "../../components/logo/logo";
 // Action
 import {getCategories, toogleOpenCategory} from "./sidebar.act";
 import {immutable} from "../../services/immutable/immutable";
+import {moveArrayItem} from "../../services/array/move";
 
 // Link
 import {Link} from "react-router";
+
+import {includes} from "../../services/array/index";
 
 /*
  * Import --------------------
@@ -32,14 +35,20 @@ export class Sidebar extends React.Component<any, any> {
       if (!categories.length) {
         return;
       }
+
       const filteredCat = categories.filter((cat, key) => {
         if (cat.parent === 0) {
           return true;
         }
         return false;
       });
-      return filteredCat.map((cat, key) => {
+
+      let gettingStartedID;
+      let catWithChildren =  filteredCat.map((cat, key) => {
         const catID = cat.ID;
+        if (cat.slug === "getting-started") {
+          gettingStartedID = key;
+        }
         return immutable(cat, {
           children: categories.filter((cat, key) => {
             if (catID === cat.parent) {
@@ -49,6 +58,12 @@ export class Sidebar extends React.Component<any, any> {
           })
         });
       });
+
+      if (gettingStartedID !== undefined) {
+        catWithChildren = moveArrayItem(catWithChildren, gettingStartedID, 0);
+      }
+
+      return catWithChildren;
     };
 
     toogleOpenCategory(categoryID, opened) {
@@ -56,8 +71,18 @@ export class Sidebar extends React.Component<any, any> {
       dispatch(toogleOpenCategory(categoryID, opened));
     }
 
+    componentWillReceiveProps(props) {
+      // console.log(this.props.sidebarData, "xxxx");
+      const oldStatus = this.props.sidebarData.status;
+      const newStatus = props.sidebarData.status;
+      if (oldStatus !== newStatus && newStatus === "COMPLETE") {
+        // const categories = this.categoryParser(props.sidebarData.categories);
+        // console.log(categories, "categories");
+      }
+    }
+
     render(): React.ReactElement<{}> {
-      const {sidebarData, className} = this.props;
+      const {sidebarData, className, currentSlug, hiddenCategory = []} = this.props;
       const {status} = sidebarData;
       const categories = this.categoryParser(sidebarData.categories);
 
@@ -69,7 +94,10 @@ export class Sidebar extends React.Component<any, any> {
           <div 
             className={style.categories}>
             {status === "COMPLETE" && categories.length ? categories.map((category, key) => {
-              const {name, ID, opened, posts = [], children = []} = category;
+              const {name, slug, ID, opened, posts = [], children = []} = category;
+              if (hiddenCategory.length && includes.call(hiddenCategory, slug)) {
+                return;
+              }
               return (
                 <div className={`${style.mainCategory} ${opened ? style.opened : style.closed}`} key={key}>
                   <h3 
@@ -84,7 +112,7 @@ export class Sidebar extends React.Component<any, any> {
                       {posts.map((post, key) => {
                         const {title, slug} = post;
                         return (
-                          <li key={key}>
+                          <li className={slug === currentSlug ? style.currentPage : ""} key={key}>
                             <Link to={`/doc/${slug}`}>{title}</Link>
                           </li>
                         );
@@ -106,7 +134,7 @@ export class Sidebar extends React.Component<any, any> {
                                   {posts.map((post, key) => {
                                     const {title, slug} = post;
                                     return (
-                                      <li key={key}>
+                                      <li key={key} className={slug === currentSlug ? style.currentPage : ""}>
                                         <Link to={`/doc/${slug}`}>{title}</Link>
                                       </li>
                                     );

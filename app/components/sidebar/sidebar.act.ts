@@ -18,6 +18,13 @@ function loadCategory(data) {
   };
 }
 
+function markComplete() {
+  "use strict";
+  return {
+    type: "MARK_COMPLETE"
+  };
+}
+
 export function toogleOpenCategory(categoryID, opened) {
   "use strict";
   return {
@@ -81,6 +88,11 @@ export function getCategories() {
             initPostToCategory(category.slug, (data) => {
               dispatch(addPostToCategory(key, data));
             });
+
+            // Mark as completed task
+            if (key === json.categories.length - 1) {
+              dispatch(markComplete());
+            }
           });
         }       
     });

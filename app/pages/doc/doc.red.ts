@@ -6,6 +6,7 @@ const initialState: any = {
   status: "EMPTY",
   data: {},
   onSearchPage: false,
+  offcanvasActive: false,
   search: {
     posts: []
   }
@@ -22,6 +23,18 @@ export const docReducer: any = (state: any = initialState, action: any) => {
     case "UPDATE_SEARCH_PAGE_VISIBILITY":
       return immutable(state, {
         onSearchPage: action.status
+      });      
+    case "SHOW_PASSWORD_PROMPT":
+      return immutable(state, {
+        status: "NEED_PASSWORD"
+      });     
+    case "HIDE_PASSWORD_PROMPT":
+      return immutable(state, {
+        status: "COMPLETE"
+      });      
+    case "TOOGLE_SHOW_OFFCANVAS":
+      return immutable(state, {
+        offcanvasActive: action.status
       });    
     case "LOAD_SEARCH_DOC":
       return immutable(state, {

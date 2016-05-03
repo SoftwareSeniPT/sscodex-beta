@@ -7,6 +7,7 @@ interface IContentProps {
   content: string;
   onSearchPage: boolean;
   searchData: any;
+  className: string;
 }
 
 interface IContentState {
@@ -27,9 +28,9 @@ import {Link} from "react-router";
 
 export class Content extends React.Component<IContentProps, IContentState> {
     render(): React.ReactElement<{}> {
-        const {title, content, onSearchPage, searchData} = this.props;
+        const {title, content, onSearchPage, searchData, className} = this.props;
         return (
-            <div className={`content ${style.content}`}>
+            <div className={`content ${style.content} ${className}`}>
               {onSearchPage ? 
                 <div className={style.search}>
                 {searchData.length ? searchData.map((search, key) => {

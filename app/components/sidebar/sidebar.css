@@ -59,17 +59,27 @@
 }
 
 .mainCategory li {
-    padding-bottom: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
     position: relative;
+}
+
+.mainCategory li > span {
     cursor: pointer;
+}
+
+.currentPage a {
+    font-weight: bold;
+    color: #333;
 }
 
 .mainCategory ul ul {
     padding-left: 20px;
 }
 
-.mainCategory > .listWrapper  > ul {
+.mainCategory > .listWrapper > ul {
     padding: 0 30px;
+    padding-bottom: 20px;
 }
 
 .listWrapper {
@@ -80,13 +90,17 @@
 
 .parentLabel {
     display: inline-block;
-    padding-bottom: 10px;
 }
 
+
 /* Open, close */
+
 .mainCategory.opened {
     background: #e8f6f6;
 }
+
 .closed > ul {
     display: none;
 }
+
+.currentPage {}

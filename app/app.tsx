@@ -57,6 +57,7 @@ ReactDOM.render(
           <IndexRoute component={Doc} />
           <Route path="doc" component={Doc} />
           <Route path="doc/:slug" component={Doc} />
+          <Route path="doc/:slug/:password" component={Doc} />
         </Route>
       </Router>
     </Provider>

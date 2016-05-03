@@ -14,10 +14,14 @@ export const sidebarReducer: any = (state: any = initialState, action: any) => {
 
       case "LOAD_CATEGORY":
         return immutable(state, { 
-          status: "COMPLETE", 
           categories: action.data.categories.map((cat, key) => {
             return immutable(cat, { opened: false });
           })
+        });   
+
+      case "MARK_COMPLETE":
+        return immutable(state, { 
+          status: "COMPLETE"
         });       
         
       case "ADD_POST_TO_CATEGORY":
